@@ -1,5 +1,5 @@
-#ifndef REC_DEFS_H_
-#define REC_DEFS_H_
+#ifndef GPT_DEFS_H_
+#define GPT_DEFS_H_
 
 #include <stdbool.h>
 
@@ -13,9 +13,9 @@
 
 //Default command line arguments
 
-#define DEFAULT_GRAPH "graphs/HomoSapiens/adj.txt"
+#define DEFAULT_GRAPH "graphs/CA-CondMat.txt"
 
-#define DEFAULT_OUTFILE "/home/umhadmin/Desktop/EMB_out/node_embeddings.txt"
+#define DEFAULT_OUTFILE "out/adj_enum.txt"
 
 #define DEFAULT_IN_PLACE false
 
@@ -49,14 +49,14 @@ typedef struct{
 //Double matrix
 typedef struct{
 	double** val;
-	uint64_tnum_rows;
-	uint64_tnum_cols;
+	uint64_t num_rows;
+	uint64_t num_cols;
 } d_mat;
 
 //Double vector
 typedef struct{
 	double* val;
-	uint64_tnum_entries;
+	uint64_t num_entries;
 } d_vec;
 
 

@@ -74,7 +74,7 @@ void enumerate_nodes(int64_t** edgelist, uint64_t num_nodes){
 			int64_t node_id = edgelist[i][j];
 
 			//Check if this node has already been recorded
-			struct current_node* = find_node(node_id);
+			struct node* current_node = find_node(node_id);
 			bool not_found = ( current_node  == NULL ) ;
 
 			if(not_found){
@@ -82,7 +82,7 @@ void enumerate_nodes(int64_t** edgelist, uint64_t num_nodes){
 				add_node(node_id, last_index);
 				edgelist[i][j] = last_index;
 			}else{
-				edgelist[i][j] = current_node->node_index;
+				edgelist[i][j] = current_node->index;
 			}
 
 		}
@@ -110,11 +110,11 @@ int main( int argc, char **argv )
 	//Write resulting edgelist to file
 	printf("Writing edgelist to file..\n\n");
 	if(args.in_place) args.outfile = args.graph_file;
-	write_edgelist(edgelist, num_edge, args.outfile);
+	write_edgelist(edgelist, num_edges, args.outfile);
 
   //Free memory
 	delete_all();
-	for(sz_long i=0; i<num_edges; i++) free(edgelist[i]);
+	for(uint64_t i=0; i<num_edges; i++) free(edgelist[i]);
 	free(edgelist);
 	return 0;
 }

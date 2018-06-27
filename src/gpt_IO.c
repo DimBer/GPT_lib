@@ -121,7 +121,7 @@ static int file_isreg(char *path) {
 
 
 //Writes edgelist to file
-void write_edgelist(int64_t** edgelist, uint64_t num_edge, char* fielname){
+void write_edgelist(int64_t** edgelist, uint64_t num_edge, char* filename){
 	FILE* file = fopen(filename, "w");
 	if(file==NULL) printf("Failure to open outfile.\n");
 	for(uint64_t i =0; i<num_edge; i++)
