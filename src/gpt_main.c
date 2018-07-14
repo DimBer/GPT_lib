@@ -64,11 +64,11 @@ void delete_all() {
 
 // Enumerate all nodes of graph
 // Takes as input an edgelist containing unique node ids
-void enumerate_nodes(int64_t** edgelist, uint64_t num_nodes){
+void enumerate_nodes(int64_t** edgelist, uint64_t num_edges){
 
 	uint64_t last_index = 0;
 
-	for(uint64_t i=0; i<num_nodes; i++){
+	for(uint64_t i=0; i<num_edges; i++){
 		for(uint64_t j=0; j<2; j++){
 
 			int64_t node_id = edgelist[i][j];
@@ -90,6 +90,20 @@ void enumerate_nodes(int64_t** edgelist, uint64_t num_nodes){
 
 }
 
+// +1 to every node in edgelist
+void add_one(int64_t** edgelist, uint64_t num_edges){
+
+  for(uint64_t i=0; i<num_edges;i++){
+    edgelist[i][0] +=1;
+    edgelist[i][1] +=1;
+  }
+
+}
+
+//Array of pointers to possible tools
+void (*tools[NUM_TOOLS])() = { enumerate_nodes,
+                               add_one } ;
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MAIN
 int main( int argc, char **argv )
@@ -105,7 +119,7 @@ int main( int argc, char **argv )
 
 	//Enumerate nodes of edgelist in_place using uthash
 	printf("Enumerating nodes..\n\n");
-	enumerate_nodes( edgelist, num_edges );
+	(*tools[args.which_tool])( edgelist, num_edges );
 
 	//Write resulting edgelist to file
 	printf("Writing edgelist to file..\n\n");

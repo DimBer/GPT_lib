@@ -45,6 +45,8 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 		{"graph_file",    required_argument, 0,  'a' },
 		{"outfile", required_argument, 0 , 'b' },
 		{"in_place", no_argument, 0 , 'c' },
+		{"enum_nodes", no_argument, 0, 'd' },
+		{"add_one", no_argument, 0, 'e'  },
 		{0,           0,                 0,  0   }
 	};
 
@@ -62,6 +64,10 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 			case 'b' : args->outfile = optarg;
 				   break;
 		  case 'c' : args->in_place = true;
+ 				   break;
+		  case 'd' : args->which_tool = 0;
+				   break;
+		  case 'e' : args->which_tool = 1;
  				   break;
  				   exit(EXIT_FAILURE);
 		}

@@ -17,6 +17,8 @@
 
 #define DEFAULT_OUTFILE "out/adj_enum.txt"
 
+#define NUM_TOOLS 2
+
 #define DEFAULT_IN_PLACE false
 
 //DATA STRUCTURES
@@ -33,6 +35,7 @@ typedef struct{
 	char* graph_file;
 	char* outfile;
 	bool in_place;
+	uint8_t which_tool;
 } cmd_args;
 
 
