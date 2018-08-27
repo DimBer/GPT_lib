@@ -35,8 +35,11 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 
 	//set default arguments
 	(*args) = (cmd_args) {.graph_file = DEFAULT_GRAPH,
-									  		.outfile = DEFAULT_OUTFILE,
-												.in_place = DEFAULT_IN_PLACE };
+						  .outfile = DEFAULT_OUTFILE,
+						  .in_place = DEFAULT_IN_PLACE,
+						  .graph_before = DEFAULT_BEFORE,
+						  .graph_after = DEFAULT_AFTER,
+						  .cmp_out = DEFAULT_CMP_OUT };
 
 	int opt= 0;
 	//Specifying the expected options
@@ -47,6 +50,10 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 		{"in_place", no_argument, 0 , 'c' },
 		{"enum_nodes", no_argument, 0, 'd' },
 		{"add_one", no_argument, 0, 'e'  },
+		{"compare", no_argument, 0, 'f'  },
+		{"graph_before",required_argument, 0, 'g'},
+		{"graph_after",required_argument, 0, 'h'},
+		{"cmp_out",required_argument, 0, 'i'},
 		{0,           0,                 0,  0   }
 	};
 
@@ -55,13 +62,13 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 	while ((opt = getopt_long_only(argc, argv,"",
 					long_options, &long_index )) != -1) {
 		switch (opt) {
-			case 'a' : args->graph_file = optarg;
+		  case 'a' : args->graph_file = optarg;
 				   if(file_isreg(args->graph_file)!=1){
 				   	printf("ERROR: %s does not exist\n",args->graph_file);
 				   	exit(EXIT_FAILURE);
 				   	}
 				   break;
-			case 'b' : args->outfile = optarg;
+		  case 'b' : args->outfile = optarg;
 				   break;
 		  case 'c' : args->in_place = true;
  				   break;
@@ -69,6 +76,22 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 				   break;
 		  case 'e' : args->which_tool = 1;
  				   break;
+		  case 'f' : args->which_tool = 2;
+ 				   break;					
+		  case 'g' : args->graph_before = optarg;
+				   if(file_isreg(args->graph_before)!=1){
+				   	printf("ERROR: %s does not exist\n",args->graph_before);
+				   	exit(EXIT_FAILURE);
+				   	}
+				   break;
+		  case 'h' : args->graph_after = optarg;
+				   if(file_isreg(args->graph_after)!=1){
+				   	printf("ERROR: %s does not exist\n",args->graph_after);
+				   	exit(EXIT_FAILURE);
+				   	}
+				   break;	
+		  case 'i' : args->cmp_out = optarg;
+				   break;					   			   					
  				   exit(EXIT_FAILURE);
 		}
 	}
@@ -100,7 +123,6 @@ int64_t** give_edge_list( char* filename, uint64_t* count ){
 
 	return buffer;
 }
-
 
 //Read .txt file into buffer
 static uint64_t read_adjacency_to_buffer(int64_t** buffer, FILE* file){

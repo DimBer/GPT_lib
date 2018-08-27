@@ -17,7 +17,13 @@
 
 #define DEFAULT_OUTFILE "out/adj_enum.txt"
 
-#define NUM_TOOLS 2
+#define DEFAULT_BEFORE "graphs/vk2016.txt"
+
+#define DEFAULT_AFTER "graphs/vk2017.txt"
+
+#define DEFAULT_CMP_OUT "cmp_out"
+
+#define NUM_TOOLS 3
 
 #define DEFAULT_IN_PLACE false
 
@@ -34,6 +40,9 @@ typedef struct{
 typedef struct{
 	char* graph_file;
 	char* outfile;
+	char* graph_before;
+	char* graph_after;
+	char* cmp_out;
 	bool in_place;
 	uint8_t which_tool;
 } cmd_args;
