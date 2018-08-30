@@ -9,4 +9,6 @@ int64_t** give_edge_list( char* , uint64_t* );
 
 void write_edgelist(int64_t** , uint64_t, char*);
 
+void write_edge_array(char*, edge_list);
+
 #endif

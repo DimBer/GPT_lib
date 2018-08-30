@@ -112,7 +112,7 @@ int64_t** give_edge_list( char* filename, uint64_t* count ){
 
 	// Read adjacency into buffer into buffer and return length count=edges
 	*count= read_adjacency_to_buffer(buffer,file);
-	printf("Number of edges: %"PRIu64"\n", (uint64_t) *count);
+	//printf("Number of edges: %"PRIu64"\n", (uint64_t) *count);
 
 	//print_edge_list( buffer, *count);
 
@@ -156,3 +156,12 @@ void write_edgelist(int64_t** edgelist, uint64_t num_edge, char* filename){
 		fprintf(file, "%"PRId64"\t%"PRId64"\n", edgelist[i][0], edgelist[i][1]);
 	fclose(file);
 }
+
+//Write (dynamic array) edge list to file 
+void write_edge_array(char* filename, edge_list list){
+	FILE* file = fopen(filename, "w");
+	if(file==NULL) printf("Failure to open outfile.\n");
+	for(uint64_t i =0; i<list.len; i++)
+		fprintf(file, "%"PRId64"\t%"PRId64"\n", list.item[i].node_a +1, list.item[i].node_b +1);
+	fclose(file);
+	}	

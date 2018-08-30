@@ -64,6 +64,7 @@ void enumerate_nodes(cmd_args args){
 	uint64_t num_edges = 0;
 	int64_t** edgelist = give_edge_list( args.graph_file, &num_edges );
 
+    printf("Enumerating nodes..\n\n");
 	uint64_t last_index = 0;
 
 	for(uint64_t i=0; i<num_edges; i++){
@@ -101,11 +102,12 @@ void enumerate_nodes(cmd_args args){
 // +1 to every node in edgelist
 void add_one(cmd_args args){
 
-	// Read rating matrix
+	// Read graph
 	printf("Loading graph..\n\n");
 	uint64_t num_edges = 0;
 	int64_t** edgelist = give_edge_list( args.graph_file, &num_edges );
 
+    printf("Adding one..\n\n");
 	for(uint64_t i=0; i<num_edges;i++){
     	edgelist[i][0] +=1;
     	edgelist[i][1] +=1;

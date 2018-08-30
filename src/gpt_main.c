@@ -39,7 +39,6 @@ int main( int argc, char **argv )
 	parse_commandline_args(argc, argv, &args);
 
 	//Enumerate nodes of edgelist in_place using uthash
-	printf("Enumerating nodes..\n\n");
 	(*tools[args.which_tool])( args );
 
 	return 0;

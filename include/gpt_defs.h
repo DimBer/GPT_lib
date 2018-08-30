@@ -11,6 +11,11 @@
 
 #define NODE_BUFF_SIZE 2000000
 
+#define BUFF_INIT 10000
+
+#define BUFF_EXT_BLOCK 5000
+
+
 //Default command line arguments
 
 #define DEFAULT_GRAPH "graphs/CA-CondMat.txt"
@@ -58,18 +63,17 @@ typedef struct{
 	uint64_t* degrees;
 } csr_graph;
 
-//Double matrix
+//Edge struct as node tuple
 typedef struct{
-	double** val;
-	uint64_t num_rows;
-	uint64_t num_cols;
-} d_mat;
+	uint64_t node_a;
+	uint64_t node_b;
+} edge;
 
-//Double vector
+//Edge list as dynamic array of edge structs
 typedef struct{
-	double* val;
-	uint64_t num_entries;
-} d_vec;
-
+	edge* item;
+	uint64_t len;
+	uint64_t max_len;
+} edge_list;
 
 #endif
