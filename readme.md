@@ -13,9 +13,11 @@ IDs (e.g., CA-CondMat graph) with unique numbers between 1 and N. Enumeration ha
 determining the connectivity changes that occur on time evolving graphs (e.g., vk2016 and vk2017 graphs). Takes as 
 input the initial graph (`--graph_before`) and graph after changes have occured (`--graph_after`). Results are stored
 in user-defined directory (`--cmp_out`) as 3 .txt files:
-- 1)
-- 2)
-- 3)
+    1.
+    2.
+    3.
+
+
 
 __INPUT FORMAT__
 
