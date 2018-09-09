@@ -28,6 +28,8 @@
 
 #define DEFAULT_CMP_OUT "cmp_out"
 
+#define DEFAULT_SORTED false
+
 #define NUM_TOOLS 3
 
 #define DEFAULT_IN_PLACE false
@@ -50,6 +52,7 @@ typedef struct{
 	char* cmp_out;
 	bool in_place;
 	uint8_t which_tool;
+	bool sorted;
 } cmd_args;
 
 

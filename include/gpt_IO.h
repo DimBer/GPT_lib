@@ -11,4 +11,8 @@ void write_edgelist(int64_t** , uint64_t, char*);
 
 void write_edge_array(char*, edge_list);
 
+csr_graph csr_create( const uint64_t** , uint64_t, bool );
+
+void csr_destroy( csr_graph );
+
 #endif
