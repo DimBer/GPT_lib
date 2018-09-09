@@ -2,8 +2,15 @@ __OVERVIEW__
 
 Graph Preprocessing Toolbox (GPT) : A collection of tools for preprocessign graph data and switching between data structures
 
+__TOOLS__
 
+- __Add one__ 
 
+- __Enumerate nodes__
+
+- __Compare graphs__ 
+
+__ARGUMENTS__
 
 Command line optional arguments with values:
 
