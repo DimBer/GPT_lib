@@ -10,7 +10,16 @@ __CONTAINS__
 IDs (e.g., CA-CondMat graph) with unique numbers between 1 and N. Enumeration happens with order of parsing. 
 
 - __Compare graphs__  (`--compare`): Compares two (enumerated) graphs that have the same set of nodes. Usefull for 
-determining the connectivity changes that occur on time evolving graphs (e.g., vk2016 and vk2017 graphs).
+determining the connectivity changes that occur on time evolving graphs (e.g., vk2016 and vk2017 graphs). Takes as 
+input the initial graph (`--graph_before`) and graph after changes have occured (`--graph_after`). Results are stored
+in user-defined directory (`--cmp_out`) as 3 .txt files:
+- 1)
+- 2)
+- 3)
+
+__INPUT FORMAT__
+
+
 
 __ARGUMENTS__
 
