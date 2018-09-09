@@ -1,14 +1,16 @@
 __OVERVIEW__
 
-Graph Preprocessing Toolbox (GPT) : A collection of tools for preprocessign graph data and switching between data structures
+Graph Preprocessing Toolbox (GPT) : Some useful tools for preprocessign graph data 
 
-__TOOLS__
+__CONTAINS__
 
-- __Add one__ 
+- __Add one__ (`--add_one`): Simply adds 1 to indices of nodes that are enumerated from 0 to N-1 (e.g., Enron graph)
 
-- __Enumerate nodes__
+- __Enumerate nodes__ (`--enum_nodes`): Uses dictionary to enumerate N nodes who are defined by arbitrary
+IDs (e.g., CA-CondMat graph) with unique numbers between 1 and N. Enumeration happens with order of parsing. 
 
-- __Compare graphs__ 
+- __Compare graphs__  (`--compare`): Compares two (enumerated) graphs that have the same set of nodes. Usefull for 
+determining the connectivity changes that occur on time evolving graphs (e.g., vk2016 and vk2017 graphs).
 
 __ARGUMENTS__
 
