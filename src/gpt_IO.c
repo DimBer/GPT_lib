@@ -43,7 +43,10 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 						  .graph_before = DEFAULT_BEFORE,
 						  .graph_after = DEFAULT_AFTER,
 						  .cmp_out = DEFAULT_CMP_OUT,
-						  .sorted = DEFAULT_SORTED };
+						  .sorted = DEFAULT_SORTED,
+						  .rnd_walk_out = DEFAULT_RND_WALK_OUT,
+						  .seed_file = DEFAULT_SEED_FILE,
+						  .walk_len = DEFAULT_WALK_LEN };
 
 	int opt= 0;
 	//Specifying the expected options
@@ -59,6 +62,10 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 		{"graph_after",required_argument, 0, 'h'},
 		{"cmp_out",required_argument, 0, 'i'},
 		{"sorted", no_argument, 0, 'k'},
+		{"rnd_walk_out",required_argument, 0, 'm'},
+		{"seed_file",required_argument, 0, 'n'},			
+		{"walk_len",required_argument, 0, 'l'},			
+		{"rand_walk", no_argument, 0, 'p'  },
 		{0,           0,                 0,  0   }
 	};
 
@@ -82,7 +89,9 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 		  case 'e' : args->which_tool = 1;
  				   break;
 		  case 'f' : args->which_tool = 2;
- 				   break;					
+ 				   break;		
+		  case 'p' : args->which_tool = 3;
+ 				   break;									
 		  case 'g' : args->graph_before = optarg;
 				   if(file_isreg(args->graph_before)!=1){
 				   	printf("ERROR: %s does not exist\n",args->graph_before);
@@ -97,12 +106,18 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 				   break;	
 		  case 'i' : args->cmp_out = optarg;
 				   break;					   			   					
- 				   exit(EXIT_FAILURE);
 		  case 'k' : args->sorted = true;
 				   break;					   			   					
- 				   exit(EXIT_FAILURE);
+		  case 'm' : args->rnd_walk_out = optarg;
+				   break;					   			   					
+		  case 'n' : args->seed_file = optarg;
+				   break;					   			   								
+		  case 'l' : args->walk_len = atoi(optarg);
+				   break;					   			   					
+ 				   exit(EXIT_FAILURE);														
 		}
 	}
+
 }
 
 
@@ -143,6 +158,23 @@ static uint64_t read_adjacency_to_buffer(int64_t** buffer, FILE* file){
 	}
 	fclose(file);
 	return count;
+}
+
+//Read file woth random walk seeds
+uint64_t* read_seed_file(char* filename, int* num_seeds){
+  uint64_t* seeds = (uint64_t*) malloc(NODE_BUFF_SIZE*sizeof(uint64_t));
+  int count = 0;
+	FILE* file= fopen(filename, "r");
+	for (; count < NODE_BUFF_SIZE; ++count)
+	{
+		int got = fscanf(file, "%"SCNd64, &seeds[count]);
+		if (got != 1) break;
+		// Stop scanning if wrong number of tokens (maybe end of file) or zero input
+	}
+	fclose(file);
+	seeds = realloc(seeds,count*sizeof(uint64_t));
+	*num_seeds = count;
+	return seeds;
 }
 
 //Check if file is valid

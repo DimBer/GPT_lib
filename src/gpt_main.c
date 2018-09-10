@@ -23,12 +23,13 @@
 #include "uthash.h"
 #include "gpt_compare.h"
 #include "gpt_enum.h"
-
+#include "gpt_rand_walk.h"
 
 //Array of pointers to possible tools
 void (*tools[NUM_TOOLS])() = { enumerate_nodes,
                                add_one,
-							   compare_graphs } ;
+							   compare_graphs,
+							   rand_walk } ;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MAIN

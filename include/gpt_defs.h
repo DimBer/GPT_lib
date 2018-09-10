@@ -26,11 +26,17 @@
 
 #define DEFAULT_AFTER "graphs/vk2017.txt"
 
+#define DEFAULT_RND_WALK_OUT "rnd_walk_out"
+
+#define DEFAULT_SEED_FILE "graphs/seeds.txt"
+
+#define DEFAULT_WALK_LEN 1000
+
 #define DEFAULT_CMP_OUT "cmp_out"
 
 #define DEFAULT_SORTED false
 
-#define NUM_TOOLS 3
+#define NUM_TOOLS 4
 
 #define DEFAULT_IN_PLACE false
 
@@ -50,6 +56,9 @@ typedef struct{
 	char* graph_before;
 	char* graph_after;
 	char* cmp_out;
+	char* rnd_walk_out;
+	char* seed_file;
+	uint64_t walk_len;
 	bool in_place;
 	uint8_t which_tool;
 	bool sorted;
