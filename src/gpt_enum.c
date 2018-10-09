@@ -67,6 +67,8 @@ void enumerate_nodes(cmd_args args){
     printf("Enumerating nodes..\n\n");
 	uint64_t last_index = 0;
 
+	int64_t* ind_list = (int64_t*) malloc(num_edges * sizeof(int64_t));
+
 	for(uint64_t i=0; i<num_edges; i++){
 		for(uint64_t j=0; j<2; j++){
 
@@ -80,6 +82,7 @@ void enumerate_nodes(cmd_args args){
 				last_index ++ ;
 				add_node(node_id, last_index);
 				edgelist[i][j] = last_index;
+				ind_list[last_index-1] = node_id;
 			}else{
 				edgelist[i][j] = current_node->index;
 			}
@@ -87,16 +90,24 @@ void enumerate_nodes(cmd_args args){
 		}
 	}
 
-	//Write resulting edgelist to file
+	ind_list = realloc( ind_list, last_index * sizeof(int64_t) );
+
+	// Write resulting edgelist to file
 	printf("Writing edgelist to file..\n\n");
 	if(args.in_place) args.outfile = args.graph_file;
 	write_edgelist(edgelist, num_edges, args.outfile);
+
+	// Also write ind_list to file
+	FILE* file = fopen(args.ind_list, "w");
+	for(uint64_t i =0; i<last_index; i++)
+		fprintf(file,"%"PRIu64"\n",ind_list[i]);
+	fclose(file);
 
 	//Free memory
 	delete_all();
 	for(uint64_t i=0; i<num_edges; i++) free(edgelist[i]);
 	free(edgelist);
-
+	free(ind_list);
 }
 
 // +1 to every node in edgelist

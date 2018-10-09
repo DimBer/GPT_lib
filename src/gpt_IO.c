@@ -39,6 +39,7 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 	//set default arguments
 	(*args) = (cmd_args) {.graph_file = DEFAULT_GRAPH,
 						  .outfile = DEFAULT_OUTFILE,
+						  .ind_list = DEFAULT_IND_LIST,
 						  .in_place = DEFAULT_IN_PLACE,
 						  .graph_before = DEFAULT_BEFORE,
 						  .graph_after = DEFAULT_AFTER,
@@ -66,6 +67,7 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 		{"seed_file",required_argument, 0, 'n'},			
 		{"walk_len",required_argument, 0, 'l'},			
 		{"rand_walk", no_argument, 0, 'p'  },
+		{"ind_list", required_argument, 0 , 'q' },		
 		{0,           0,                 0,  0   }
 	};
 
@@ -113,7 +115,9 @@ void parse_commandline_args(int argc,char** argv , cmd_args* args){
 		  case 'n' : args->seed_file = optarg;
 				   break;					   			   								
 		  case 'l' : args->walk_len = atoi(optarg);
-				   break;					   			   					
+				   break;	
+		  case 'q' : args->ind_list = optarg;
+				   break;					   				   			   					
  				   exit(EXIT_FAILURE);														
 		}
 	}

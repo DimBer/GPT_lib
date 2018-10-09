@@ -29,8 +29,9 @@ Command line optional arguments with values:
 
 ARGUMENT | VALUES | DEFAULT | DESCRIPTION
 -------- | ------ | ------- | -----------
-`--graph_file` | - |- | -
-`--outfile` | - | - | -
+`--graph_file` | - | `CA-cond.txt` | input file
+`--outfile` | - | `out/adj_enum.txt` | output file
+`--ind_list` | - | `out/ind_list.txt` | strores map of new indexes (1 to N) to old (values) 
 
 Default values can be changed by editing `defs.h`
 

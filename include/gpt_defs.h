@@ -22,6 +22,8 @@
 
 #define DEFAULT_OUTFILE "out/adj_enum.txt"
 
+#define DEFAULT_IND_LIST "out/ind_list.txt"
+
 #define DEFAULT_BEFORE "graphs/vk2016.txt"
 
 #define DEFAULT_AFTER "graphs/vk2017.txt"
@@ -58,6 +60,7 @@ typedef struct{
 	char* cmp_out;
 	char* rnd_walk_out;
 	char* seed_file;
+	char* ind_list;
 	uint64_t walk_len;
 	bool in_place;
 	uint8_t which_tool;
